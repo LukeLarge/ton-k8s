@@ -1,7 +1,7 @@
 ARG  base
 FROM ${base} AS builder
 
-FROM python:3.10-bullseye AS git
+FROM python:3.10-bullseye@sha256:65c6bdcca22db1a3468a0262ae05f38a0a718f51e9818cd09c12094aaae28a33 AS git
 
 RUN git clone https://github.com/toncenter/ton-http-api.git
 WORKDIR ton-http-api
@@ -13,7 +13,7 @@ COPY --from=builder /ton/build/tonlib/libtonlibjson.so.0.5 ./pyTON/distlib/linux
 # fix /api/v2
 RUN sed -i 's/\/api\/v2/\//g' ./pyTON/main.py
 
-FROM python:3.10-slim-bullseye
+FROM python:3.10-slim-bullseye@sha256:f1fb49e4d5501ac93d0ca519fb7ee6250842245aba8612926a46a0832a1ed089
 
 WORKDIR ton-http-api
 COPY --from=git ton-http-api ./

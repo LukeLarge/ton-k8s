@@ -1,6 +1,6 @@
 ARG is_ssh=false
 
-FROM python:3.10-bullseye AS base
+FROM python:3.10-bullseye@sha256:65c6bdcca22db1a3468a0262ae05f38a0a718f51e9818cd09c12094aaae28a33 AS base
 
 RUN apt-get update && \
         apt-get install -y build-essential cmake clang-11 openssl libssl-dev zlib1g-dev libmicrohttpd-dev gperf wget git openssl wget python nano libsecp256k1-dev libsodium-dev pkg-config && \
